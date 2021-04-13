@@ -65,6 +65,11 @@ var flags = []cli.Flag{
 		Name:  "force, f",
 		Usage: "Ignore commit status checks.",
 	},
+	cli.StringFlag{
+		Name:  "description",
+		Value: "",
+		Usage: "A description of this deployment.",
+	},
 	cli.BoolFlag{
 		Name:  "detached, d",
 		Usage: "Don't wait for the deployment to complete.",
@@ -270,8 +275,8 @@ func newDeploymentRequest(c *cli.Context, ref string, env string) (*github.Deplo
 		Environment:      github.String(env),
 		RequiredContexts: contexts,
 		// TODO(jlb): Do we need to set this payload to something in the future?
-		Payload: nil,
-		// TODO Description:
+		Payload:     nil,
+		Description: github.String(c.String("description")),
 	}, nil
 }
 

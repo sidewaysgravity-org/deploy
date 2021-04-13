@@ -18,6 +18,7 @@ jobs:
         uses: thatisuday/go-cross-build@v1
         with:
             platforms: 'linux/amd64, darwin/amd64, windows/amd64'
-            name: './cmd/deploy'
+            name: 'deploy'
+            package: './cmd/deploy'
             compress: 'true'
             dest: 'dist'
